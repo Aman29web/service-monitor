@@ -1,6 +1,6 @@
 # Service Health Monitor
 
-Distributed Service Health Monitor built using a Master–Slave architecture. The system continuously monitors the health of distributed nodes by collecting system metrics such as CPU usage, memory usage, and open ports.
+Distributed Service Health Monitor built using a Master Slave architecture. The system continuously monitors the health of distributed nodes by collecting system metrics such as CPU usage, memory usage, and open ports.
 
 This project demonstrates system design thinking, networking concepts, real-time communication, and full-stack development skills.
 
