@@ -103,29 +103,32 @@ Alert when node goes down
 ---
 
 # Folder Structure
+
+```
 service-monitor
-
-client
-src
-api
-components
-pages
-hooks
-
-master
-config
-controllers
-middleware
-models
-routes
-services
-utils
-server.js
-
-slave
-services
-utils
-slave.js
+│
+├── client
+│   └── src
+│       ├── api
+│       ├── components
+│       ├── pages
+│       └── hooks
+│
+├── master
+│   ├── config
+│   ├── controllers
+│   ├── middleware
+│   ├── models
+│   ├── routes
+│   ├── services
+│   ├── utils
+│   └── server.js
+│
+└── slave
+    ├── services
+    ├── utils
+    └── slave.js
+```
 
 ---
 
@@ -185,24 +188,32 @@ Returns server uptime status.
 
 # Environment Variables
 
-Backend .env
+## Backend .env
+```
 PORT=4000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_secret_key
 CORS_ORIGINS=http://localhost:5173,https://service-monitor-rho.vercel.app
+```
 
-
-Frontend .env
+## Frontend .env
+```
 VITE_MASTER_URL=https://service-monitor-mni6.onrender.com
+```
 
-Run backend
+## Run backend
+```
 cd master
 npm install
 npm run dev
-Run frontend
+```
+
+## Run frontend
+```
 cd slave
 npm install
 node slave.js
+```
 
 
 ---
