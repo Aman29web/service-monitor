@@ -1,13 +1,7 @@
-// services/metricsService.js
-// Collects real system metrics using Node.js built-ins.
-
 const os = require('os');
 const net = require('net');
 
 /**
- * Get current CPU usage percentage.
- * We take two samples 200ms apart and compute the delta.
- *
  * @returns {Promise<number>} CPU usage as a percentage (0–100)
  */
 const getCpuUsage = () => {
@@ -40,8 +34,6 @@ const getCpuUsage = () => {
 };
 
 /**
- * Get current memory usage percentage and total memory.
- *
  * @returns {{ memoryUsage: number, totalMemory: number, freeMemory: number }}
  */
 const getMemoryUsage = () => {
@@ -58,9 +50,6 @@ const getMemoryUsage = () => {
 };
 
 /**
- * Check whether a specific TCP port is open on localhost.
- * Uses a raw net.Socket with a 300ms timeout.
- *
  * @param {number} port
  * @returns {Promise<boolean>}
  */
@@ -88,8 +77,6 @@ const isPortOpen = (port) => {
 };
 
 /**
- * Scan a list of ports and return the ones that are open.
- *
  * @param {number[]} ports - Ports to scan
  * @returns {Promise<number[]>} Open ports
  */
@@ -105,8 +92,6 @@ const getOpenPorts = async (ports) => {
 };
 
 /**
- * Collect all metrics in one call.
- *
  * @param {number[]} portsToScan
  * @returns {Promise<Object>}
  */

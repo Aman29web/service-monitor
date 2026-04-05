@@ -1,16 +1,10 @@
-// services/apiService.js
-// Handles all HTTP communication from the slave to the master server.
 
 const axios = require('axios');
 
-/** Singleton Axios instance configured for the master server */
 let client = null;
 let authToken = null; // stored after successful registration
 
 /**
- * Initialize the Axios client.
- * Call once at startup.
- *
  * @param {string} masterUrl - Base URL of the master server
  */
 const initClient = (masterUrl) => {
@@ -22,9 +16,6 @@ const initClient = (masterUrl) => {
 };
 
 /**
- * Store the JWT received after registration.
- * Subsequent requests will include it automatically.
- *
  * @param {string} token
  */
 const setAuthToken = (token) => {
@@ -35,9 +26,6 @@ const setAuthToken = (token) => {
 };
 
 /**
- * Register this slave with the master.
- * Returns the JWT token to use for heartbeats.
- *
  * @param {Object} registrationPayload
  * @returns {Promise<string>} JWT token
  */
@@ -47,8 +35,6 @@ const register = async (registrationPayload) => {
 };
 
 /**
- * Send a heartbeat with current metrics.
- *
  * @param {Object} heartbeatPayload - { nodeId, cpuUsage, memoryUsage, totalMemory, openPorts }
  * @returns {Promise<void>}
  */
