@@ -126,3 +126,166 @@ slave
 services
 utils
 slave.js
+
+---
+
+# API Endpoints
+
+Register node  
+
+POST /api/nodes/register  
+
+Registers slave node and returns JWT token.
+
+---
+
+Send heartbeat  
+
+POST /api/nodes/heartbeat  
+
+Updates node health metrics.
+
+Example request body:
+Example request body:
+
+
+{
+"nodeId": "LAPTOP-F58TASBU-5001",
+"cpuUsage": 35,
+"memoryUsage": 60,
+"openPorts": [3000, 80]
+}
+
+
+---
+
+Get all nodes  
+
+GET /api/nodes  
+
+Returns all nodes with current status.
+
+---
+
+Get node details  
+
+GET /api/nodes/:id  
+
+Returns detailed node metrics.
+
+---
+
+Health check endpoint  
+
+GET /health  
+
+Returns server uptime status.
+
+---
+
+# Environment Variables
+
+Backend .env
+PORT=4000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+CORS_ORIGINS=http://localhost:5173,https://service-monitor-rho.vercel.app
+
+
+Frontend .env
+VITE_MASTER_URL=https://service-monitor-mni6.onrender.com
+
+Run backend
+cd master
+npm install
+npm run dev
+Run frontend
+cd slave
+npm install
+node slave.js
+
+
+---
+
+# Simulating Multiple Nodes
+
+Multiple slave nodes can be simulated on the same machine using different ports.
+
+Open multiple terminals and run:
+node slave.js
+node slave.js --port 5001
+node slave.js --port 5002
+
+Each process acts as an independent node and sends heartbeat data to the master server.
+
+Example node IDs:
+
+LAPTOP-F58TASBU-default  
+LAPTOP-F58TASBU-5001  
+LAPTOP-F58TASBU-5002  
+
+---
+
+# How Node Health Works
+
+Slave sends heartbeat every 20 seconds.
+
+Master server records last heartbeat timestamp.
+
+If no heartbeat is received within a defined interval, node status is marked as DOWN.
+
+Example:
+
+Node sending heartbeat regularly → status UP  
+
+Slave stopped → heartbeat stops → status DOWN  
+
+---
+
+# Design Decisions
+
+Master–Slave architecture used to simulate distributed monitoring systems.
+
+Heartbeat mechanism used for failure detection.
+
+Socket.IO used for real-time updates.
+
+JWT authentication used for secure communication.
+
+Retry mechanism implemented to handle temporary network failures.
+
+MongoDB used for flexible schema design.
+
+Modular folder structure used for scalability and maintainability.
+
+---
+
+# Demo Instructions
+
+Start backend server.
+
+Start frontend application.
+
+Run at least 2–3 slave agents.
+
+Observe nodes appearing in dashboard.
+
+Stop one slave process.
+
+Observe node status changing from UP to DOWN.
+
+---
+
+# Assumptions
+
+Slave nodes are simulated locally for demonstration purposes.
+
+In real production environments, slave agents would run on distributed machines across infrastructure.
+
+Open ports are detected using a simple TCP scan instead of full Nmap.
+
+---
+
+# Author
+
+Aman Singh
