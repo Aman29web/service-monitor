@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { fetchNode } from '../api/nodesApi';
 import { io } from 'socket.io-client';
 
+const MASTER_URL = import.meta.env.VITE_MASTER_URL || 'https://service-monitor-mni6.onrender.com';
+
 export default function NodeDetail() {
   const { nodeId } = useParams();
   const navigate = useNavigate();
@@ -11,7 +13,7 @@ export default function NodeDetail() {
   useEffect(() => {
     fetchNode(nodeId).then(setNode);
 
-    const socket = io(import.meta.env.VITE_MASTER_URL || 'http://localhost:4000');
+    const socket = io(MASTER_URL);
     socket.on(`node:heartbeat:${nodeId}`, setNode);
     return () => socket.disconnect();
   }, [nodeId]);
