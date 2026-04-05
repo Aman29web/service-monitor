@@ -1,11 +1,7 @@
-// utils/jwtUtils.js
-// Helper functions for signing and verifying JWTs.
 
 const jwt = require('jsonwebtoken');
 
 /**
- * Sign a token for a slave agent to use in subsequent requests.
- *
  * @param {string} nodeId - The slave's unique identifier
  * @returns {string} Signed JWT
  */
@@ -18,8 +14,6 @@ const signSlaveToken = (nodeId) => {
 };
 
 /**
- * Verify and decode a JWT (used in tests or utility scripts).
- *
  * @param {string} token
  * @returns {Object} Decoded payload
  */

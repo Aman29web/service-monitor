@@ -1,16 +1,10 @@
-// services/nodeService.js
-// All business logic related to slave nodes lives here.
-// Controllers stay thin — they just call these functions.
+
 
 const Node = require('../models/Node');
 
-// How long (ms) without a heartbeat before we mark a node DOWN
 const TIMEOUT_MS = parseInt(process.env.NODE_TIMEOUT_MS, 10) || 40000;
 
 /**
- * Register a new slave node or update its metadata if it reconnects.
- * Using upsert so a slave that restarts doesn't cause a duplicate-key error.
- *
  * @param {Object} data - Registration payload from the slave
  * @returns {Object} { node, isNew }
  */
@@ -31,13 +25,12 @@ const registerNode = async (data) => {
       },
     },
     {
-      upsert: true,       // create if not found
-      new: true,          // return the updated document
+      upsert: true,       
+      new: true,          
       runValidators: true,
     }
   );
 
-  // Mongoose doesn't expose `upserted` easily — detect by comparing timestamps
   const isNew =
     Math.abs(node.createdAt.getTime() - node.updatedAt.getTime()) < 1000;
 
@@ -45,9 +38,7 @@ const registerNode = async (data) => {
 };
 
 /**
- * Process a heartbeat from a slave.
- * Updates metrics and resets the lastHeartbeat timestamp.
- *
+
  * @param {string} nodeId
  * @param {Object} metrics - { cpuUsage, memoryUsage, totalMemory, openPorts }
  * @returns {Object} Updated node document
@@ -80,7 +71,6 @@ const processHeartbeat = async (nodeId, metrics) => {
 };
 
 /**
- * Return all nodes, newest first.
  *
  * @returns {Array} Array of Node documents
  */
@@ -89,7 +79,6 @@ const getAllNodes = async () => {
 };
 
 /**
- * Return a single node by nodeId.
  *
  * @param {string} nodeId
  * @returns {Object} Node document
@@ -105,9 +94,6 @@ const getNodeById = async (nodeId) => {
 };
 
 /**
- * Health-check sweep — runs on a cron-like interval.
- * Any node whose lastHeartbeat is older than TIMEOUT_MS is marked DOWN.
- *
  * @returns {string[]} Array of nodeIds that were marked DOWN
  */
 const markStaleNodesDown = async () => {
@@ -122,7 +108,6 @@ const markStaleNodesDown = async () => {
   );
 
   if (result.modifiedCount > 0) {
-    // Fetch the IDs of nodes that were just marked DOWN for alerting
     const downNodes = await Node.find(
       { status: 'DOWN', lastHeartbeat: { $lt: cutoff } },
       { nodeId: 1, _id: 0 }

@@ -10,15 +10,9 @@ const notFound = (req, res, next) => {
   next(err);
 };
 
-/**
- * Global error handler.
- * Express recognises this as an error handler because it has 4 parameters.
- */
 const errorHandler = (err, req, res, _next) => {
-  // Default to 500 if no status code was set on the error
   const statusCode = err.statusCode || res.statusCode === 200 ? (err.statusCode || 500) : res.statusCode;
 
-  // Log the stack in development for easier debugging
   if (process.env.NODE_ENV !== 'production') {
     console.error(`[Error] ${err.message}`);
     if (err.stack) console.error(err.stack);
@@ -29,7 +23,6 @@ const errorHandler = (err, req, res, _next) => {
   res.status(statusCode).json({
     success: false,
     message: err.message || 'Internal Server Error',
-    // Only expose the stack in development
     ...(process.env.NODE_ENV !== 'production' && { stack: err.stack }),
   });
 };

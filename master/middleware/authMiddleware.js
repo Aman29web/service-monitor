@@ -1,13 +1,7 @@
-// middleware/authMiddleware.js
-// Verifies the JWT that slave agents attach to every request.
-// The same secret is shared between master and slaves via environment variables.
 
 const jwt = require('jsonwebtoken');
 
-/**
- * Express middleware that validates a Bearer JWT in the Authorization header.
- * Attaches the decoded payload to `req.slave` on success.
- */
+
 const authenticateSlave = (req, res, next) => {
   const authHeader = req.headers['authorization'];
 
@@ -26,7 +20,6 @@ const authenticateSlave = (req, res, next) => {
     req.slave = decoded; // e.g. { nodeId, iat, exp }
     next();
   } catch (err) {
-    // Distinguish between expired tokens and invalid signatures
     const message =
       err.name === 'TokenExpiredError'
         ? 'Token has expired. Please re-register the slave.'
