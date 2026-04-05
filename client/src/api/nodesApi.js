@@ -1,11 +1,7 @@
 import axios from "axios";
 
-const BASE =
-  import.meta.env.VITE_MASTER_URL ||
-  "https://service-monitor-mni6.onrender.com";
-
 const api = axios.create({
-  baseURL: BASE,
+  baseURL: import.meta.env.VITE_MASTER_URL,
 });
 
 export const fetchNodes = () =>

@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { fetchNode } from '../api/nodesApi';
 import { io } from 'socket.io-client';
 
-const MASTER_URL = import.meta.env.VITE_MASTER_URL || 'https://service-monitor-mni6.onrender.com';
+const MASTER_URL = import.meta.env.VITE_MASTER_URL;
 
 export default function NodeDetail() {
   const { nodeId } = useParams();

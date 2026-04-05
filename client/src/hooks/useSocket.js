@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { io } from 'socket.io-client';
 
-const MASTER_URL = import.meta.env.VITE_MASTER_URL || 'http://localhost:4000';
+const MASTER_URL = import.meta.env.VITE_MASTER_URL;
 
 export const useSocket = (onNodesUpdate, onAlert) => {
   const socketRef = useRef(null);
