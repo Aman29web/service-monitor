@@ -36,31 +36,31 @@ The frontend dashboard displays real-time system health.
 
 # Tech Stack
 
-Frontend  
-React.js  
-Vite  
-Tailwind CSS  
-Axios  
-Socket.IO Client  
+## Frontend
+- React.js  
+- Vite  
+- Tailwind CSS  
+- Axios  
+- Socket.IO Client  
 
-Backend  
-Node.js  
-Express.js  
-MongoDB Atlas  
-Mongoose  
-Socket.IO  
-JWT Authentication  
+## Backend
+- Node.js  
+- Express.js  
+- MongoDB Atlas  
+- Mongoose  
+- Socket.IO  
+- JWT Authentication  
 
-Slave Agent  
-Node.js  
-OS module  
-Axios  
-TCP port scanning using net module  
+## Slave Agent
+- Node.js  
+- OS module  
+- Axios  
+- TCP port scanning using net module  
 
-Deployment  
-Frontend hosted on Vercel  
-Backend hosted on Render  
-Database hosted on MongoDB Atlas  
+## Deployment
+- Frontend hosted on Vercel  
+- Backend hosted on Render  
+- Database hosted on MongoDB Atlas  
 
 ---
 
