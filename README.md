@@ -66,42 +66,41 @@ The frontend dashboard displays real-time system health.
 
 # Features
 
-Master Server  
-Register slave nodes  
-Receive heartbeat data  
-Track node health  
-Store system metrics  
-Detect node failure  
-Provide REST APIs  
-Real-time updates using WebSockets  
+## Master Server
+- Register slave nodes  
+- Receive heartbeat data  
+- Track node health  
+- Store system metrics  
+- Detect node failure  
+- Provide REST APIs  
+- Real-time updates using WebSockets  
 
-Slave Agent  
-Registers with master on startup  
-Sends heartbeat every 20 seconds  
-Collects CPU usage  
-Collects memory usage  
-Detects open ports  
-Retry mechanism if master unavailable  
-JWT authentication with master  
+## Slave Agent
+- Registers with master on startup  
+- Sends heartbeat every 20 seconds  
+- Collects CPU usage  
+- Collects memory usage  
+- Detects open ports  
+- Retry mechanism if master unavailable  
+- JWT authentication with master  
 
-Frontend Dashboard  
-Display all nodes  
-Show node status (UP or DOWN)  
-Display CPU usage  
-Display memory usage  
-Display open ports  
-Display last heartbeat time  
-View detailed node information  
-Real-time updates using WebSockets  
+## Frontend Dashboard
+- Display all nodes  
+- Show node status (UP or DOWN)  
+- Display CPU usage  
+- Display memory usage  
+- Display open ports  
+- Display last heartbeat time  
+- View detailed node information  
+- Real-time updates using WebSockets  
 
-Bonus Features Implemented  
-Real-time updates using Socket.IO  
-Retry mechanism when master unavailable  
-JWT authentication between master and slaves  
-Alert when node goes down  
+## Bonus Features Implemented
+- Real-time updates using Socket.IO  
+- Retry mechanism when master unavailable  
+- JWT authentication between master and slaves  
+- Alert when node goes down  
 
 ---
-
 # Folder Structure
 
 ```
